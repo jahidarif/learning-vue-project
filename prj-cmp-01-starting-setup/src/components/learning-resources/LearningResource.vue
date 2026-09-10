@@ -1,5 +1,6 @@
 <template>
   <li>
+    <base-card>
     <div>
       <header>
         <h3>{{ title }}</h3>
@@ -12,6 +13,7 @@
     <nav>
       <a :href="link" target="_blank">View Resource</a>
     </nav>
+    </base-card>
   </li>
 </template>
 
