@@ -1,0 +1,78 @@
+<template>
+  <div>
+    <base-card>
+      <base-button
+        @click="setselectedTab('StoredResources')"
+        :mode="storedResButtonMode"
+      >
+        The Resources
+      </base-button>
+
+      <base-button
+        @click="setselectedTab('AddResource')"
+        :mode="addResButtonMode"
+      >
+        Add Resource
+      </base-button>
+    </base-card>
+
+    <component :is="selectedTab"></component>
+  </div>
+</template>
+
+<script>
+import StoredResources from './StoredResources.vue';
+import AddResource from './AddResource.vue';
+
+export default {
+  components: {
+    StoredResources,
+    AddResource,
+  },
+
+  computed: {
+    storedResButtonMode() {
+      return this.selectedTab === 'StoredResources' ? null : 'flat';
+    },
+
+    addResButtonMode() {
+      return this.selectedTab === 'AddResource' ? null : 'flat';
+    },
+  },
+
+  data() {
+    return {
+      selectedTab: 'StoredResources',
+
+      storeResources: [
+        {
+          id: 'offcicial-guide',
+          title: 'Official Guide',
+          description:
+            'The official Vue.js guide is a comprehensive resource for learning Vue.js, covering everything from the basics to advanced topics.',
+          link: 'https://vuejs.org',
+        },
+        {
+          id: 'google',
+          title: 'Google',
+          description:
+            'Google is a search engine that provides a way to find information on the web.',
+          link: 'https://google.com',
+        },
+      ],
+    };
+  },
+
+  provide() {
+    return {
+      storeResources: this.storeResources,
+    };
+  },
+
+  methods: {
+    setselectedTab(tabName) {
+      this.selectedTab = tabName;
+    },
+  },
+};
+</script>
