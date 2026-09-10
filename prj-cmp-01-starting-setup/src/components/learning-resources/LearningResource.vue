@@ -1,27 +1,31 @@
 <template>
   <li>
     <base-card>
-    <div>
-      <header>
-        <h3>{{ title }}</h3>
-        <base-button mode="flat">Delete</base-button>
-      </header>
-    </div>
+      <div>
+        <header>
+          <h3>{{ title }}</h3>
+          <base-button mode="flat" @click="removeResource(id)">
+            Delete
+          </base-button>
+        </header>
+      </div>
 
-    <p>{{ description }}</p>
+      <p>{{ description }}</p>
 
-    <nav>
-      <a :href="link" target="_blank">View Resource</a>
-    </nav>
+      <nav>
+        <a :href="link" target="_blank">View Resource</a>
+      </nav>
     </base-card>
   </li>
 </template>
 
 <script>
 export default {
-  props: ['title', 'description', 'link'],
+  props: ['title', 'description', 'link', 'id'],
+  inject: ['removeResource'],
 };
 </script>
+
 <style scoped>
 li {
   margin: auto;

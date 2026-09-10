@@ -1,28 +1,39 @@
 <template>
-  <base-card>
-    <form @submit.prevent="submitData">
-      <div class="form-control">
-        <label for="title">Title</label>
-        <input type="text" id="title" name="title" ref="userInput" />
-      </div>
-      <div class="form-control">
-        <label for="description">Description</label>
-        <textarea
-          id="description"
-          name="description"
-          rows="3"
-          ref="descInput"
-        ></textarea>
-      </div>
-      <div class="form-control">
-        <label for="link">Link</label>
-        <input type="url" id="link" name="link" ref="linkInput" />
-      </div>
-      <div>
-        <base-button type="submit">Add Resource</base-button>
-      </div>
-    </form>
-  </base-card>
+  <div>
+    <base-dialog v-if="inputIsInvalid" title="Input is Invalid">
+      <template #default>
+        <p>Any of input field is invalid</p>
+        <p>Try to write at least somehting</p>
+      </template>
+      <template #actions>
+        <base-button @click="confirmError">Okay</base-button>
+      </template>
+    </base-dialog>
+    <base-card>
+      <form @submit.prevent="submitData">
+        <div class="form-control">
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" ref="userInput" />
+        </div>
+        <div class="form-control">
+          <label for="description">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            rows="3"
+            ref="descInput"
+          ></textarea>
+        </div>
+        <div class="form-control">
+          <label for="link">Link</label>
+          <input type="url" id="link" name="link" ref="linkInput" />
+        </div>
+        <div>
+          <base-button type="submit">Add Resource</base-button>
+        </div>
+      </form>
+    </base-card>
+  </div>
 </template>
 <script>
 export default {
@@ -34,8 +45,25 @@ export default {
       const enteredDescription = this.$refs.descInput.value;
       const enterdUrl = this.$refs.linkInput.value;
 
+      if (
+        enteredTitle.trim() === '' ||
+        enteredDescription.trim() === '' ||
+        enterdUrl.trim() === ''
+      ) {
+        this.inputIsInvalid = true;
+        return;
+      }
+
       this.addResource(enteredTitle, enteredDescription, enterdUrl);
     },
+    confirmError() {
+      this.inputIsInvalid = false;
+    },
+  },
+  data() {
+    return {
+      inputIsInvalid: false,
+    };
   },
 };
 </script>
