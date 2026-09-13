@@ -13,7 +13,9 @@
       <p>{{ description }}</p>
 
       <nav>
-        <a :href="link" target="_blank">View Resource</a>
+        <a :href="link" target="_blank" rel="noopener noreferrer">
+          View Resource
+        </a>
       </nav>
     </base-card>
   </li>
