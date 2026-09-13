@@ -80,7 +80,7 @@ export default {
 
     addResource(title, description, url) {
       const newResource = {
-        id: new Date().toDateString(),
+        id: Date.now().toString(),
         title: title,
         description: description,
         link: url,
