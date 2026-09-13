@@ -48,7 +48,7 @@ export default {
 
       storeResources: [
         {
-          id: 'offcicial-guide',
+          id: 'official-guide',
           title: 'Official Guide',
           description:
             'The official Vue.js guide is a comprehensive resource for learning Vue.js, covering everything from the basics to advanced topics.',
