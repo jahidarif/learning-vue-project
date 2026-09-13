@@ -2,13 +2,15 @@
   <div>
     <base-dialog v-if="inputIsInvalid" title="Input is Invalid">
       <template #default>
-        <p>Any of input field is invalid</p>
-        <p>Try to write at least somehting</p>
+        <p>One or more input fields are invalid.</p>
+        <p>Try to enter at least something.</p>
       </template>
+
       <template #actions>
         <base-button @click="confirmError">Okay</base-button>
       </template>
     </base-dialog>
+
     <base-card>
       <form @submit.prevent="submitData">
         <div class="form-control">
